@@ -11,7 +11,7 @@ with Zombie as (
     , Last_month_status
     , this_month_status
   from
-    select * from {{ ref('aggregates') }}
+    ( select * from {{ ref('aggregates') }} ) as t
   where
     diff_days > 35
     or (

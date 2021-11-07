@@ -8,7 +8,7 @@ with reacquired as (
     , this_month_status
     , count(user_id) as transitions
   from
-    select * from {{ ref('aggregates') }}
+    ( select * from {{ ref('aggregates') }} ) as t
   where
     Last_month_status_lag is null and diff_days < 35 and diff_days is not null
   group by

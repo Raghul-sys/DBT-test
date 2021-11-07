@@ -17,7 +17,7 @@ with Standard_cohorts as (
         , this_month_status
         , count(USER_ID) as transitions
       from
-         select * from {{ ref('aggregates') }}
+         ( select * from {{ ref('aggregates') }} ) as t
       group by
         1
         , 2
